@@ -9,30 +9,37 @@ function computerSelection() {
     }
 }
 
+function playerSelection() {
+    let playerChoice = prompt("Please enter your play(rock,paper,scissors): ");
+    return capitalize(playerChoice) + playerChoice.toLowerCase().slice(1);
+}
+
 function playRound(you, me) {
     if (you === me) {
         return "Tie";
     }
     if (you === "Rock" && me === "Scissors") {
-        return "You lose! Rock beats Scissors";
+        return "You lose!";
     }
     if (you === "Scissors" && me === "Paper") {
-        return "You lose! Scissors beats Paper";
+        return "You lose!";
     }
     if (you === "Paper" && me === "Rock") {
-        return "You lose! Paper beats Rock";
+        return "You lose!";
     }
     return "You win!";
         
 }
 
+
+
+
 let capitalize = (str) => str.charAt(0).toUpperCase();
 
-let playerChoice = prompt("Please enter your play(rock,paper,scissors): ");
-let playerSelection = capitalize(playerChoice) + playerChoice.toLowerCase().slice(1);
-let computer = computerSelection();
-let result = playRound(computer,playerSelection);
+let result = playRound(computerSelection(), playerSelection());
 
-console.log("player: " + playerSelection);
-console.log("computer: " + computer);
+
+
+/* console.log("computer: " + computerSelection());
+console.log("player: " + playerSelection()); */
 console.log(result);
