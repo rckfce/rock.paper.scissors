@@ -31,15 +31,30 @@ function playRound(you, me) {
         
 }
 
-
-
-
 let capitalize = (str) => str.charAt(0).toUpperCase();
 
-let result = playRound(computerSelection(), playerSelection());
+function game() {
+    let computerScore = 0;
+    let playerScore = 0;
 
+    for (let i = 0; i < 5; i++) {
+        let result = playRound(computerSelection(), playerSelection());
+        console.log(result);
+        if (result === "You lose!") { computerScore = computerScore + 1;}
+        if (result === "You win!") { playerScore = playerScore + 1;}
+    }
+    
+    if (computerScore > playerScore) { 
+        console.log("You lost! Game score: " + computerScore + " : " + playerScore); 
+    }
+    if (computerScore < playerScore) { 
+        console.log("You won! Game score: " + playerScore + " : " + computerScore); 
+    }
+    if (computerScore == playerScore) {
+        console.log("The game is tied! Game score: " + playerScore + " : " + computerScore);
+    }
+    console.log(computerScore);
+    console.log(playerScore);
+}
 
-
-/* console.log("computer: " + computerSelection());
-console.log("player: " + playerSelection()); */
-console.log(result);
+game();
