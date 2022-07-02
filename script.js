@@ -55,8 +55,7 @@ function game() {
     if (computerScore == playerScore) {
         console.log("The game is tied! Game score: " + playerScore + " : " + computerScore);
     }
-    console.log(computerScore);
-    console.log(playerScore);
+    c
 }
 
 game();
