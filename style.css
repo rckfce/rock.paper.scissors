@@ -1,0 +1,52 @@
+.choice {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    border: 0.2rem solid black;
+    border-radius: 5px;
+    background-color: bisque;
+    transition-duration: 0.4s;
+    background-position: center;
+}
+
+.buttons:hover {
+    transform: scale(1.2);
+}
+
+.rock {
+    background-image: url(img/rock.png);
+    background-repeat: no-repeat;
+    background-size: 95px 95px;
+    width: 100px;
+    height: 100px;
+}
+
+.paper {
+    background-image: url(img/paper.png);
+    background-repeat: no-repeat;
+    background-size: 95px 95px;
+    width: 100px;
+    height: 100px;
+}
+
+.scissors {
+    background-image: url(img/scissors.png);
+    background-repeat: no-repeat;
+    background-size: 95px 95px;
+    width: 100px;
+    height: 100px;
+}

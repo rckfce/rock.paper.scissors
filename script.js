@@ -1,3 +1,6 @@
+
+/* let capitalize = (str) => str.charAt(0).toUpperCase(); */
+
 function computerSelection() {
     let computerChoice = Math.random() * 100;
     if (computerChoice <= 33) {
@@ -6,13 +9,31 @@ function computerSelection() {
         return "Paper";
     } else {
         return "Scissors";
-    }
+    } 
 }
 
-function playerSelection() {
-    let playerChoice = prompt("Please enter your play(rock,paper,scissors): ");
+
+const playerSelected = document.querySelector('#rock');
+playerSelected.addEventListener('click', () => {
+  console.log(playRound('Rock',computerSelection()));
+});
+
+const playerSelected = document.querySelector('#paper');
+playerSelected.addEventListener('click', () => {
+  console.log(playRound('Paper',computerSelection()));
+});
+
+const playerSelected = document.querySelector('#scissors');
+playerSelected.addEventListener('click', () => {
+  console.log(playRound('Scissors',computerSelection()));
+});
+
+
+
+/* function playerSelection(playerChoice) {
     return capitalize(playerChoice) + playerChoice.toLowerCase().slice(1);
 }
+ */
 
 function playRound(you, me) {
     if (you === me) {
@@ -31,7 +52,6 @@ function playRound(you, me) {
         
 }
 
-let capitalize = (str) => str.charAt(0).toUpperCase();
 
 function game() {
     let computerScore = 0;
