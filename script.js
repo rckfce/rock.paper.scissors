@@ -1,8 +1,6 @@
 let capitalize = (str) => str.charAt(0).toUpperCase();
 
-const gameResults = document.querySelector(".results");
-const gameResult = document.createElement("div");
-gameResult.classList.add("gameResult");
+let totalResults = [0,0,0]; /* keeps total result, [0] is player, [1] is computer,[2] is game number  */
 
 function computerSelection() {
     let computerChoice = Math.random() * 100;
@@ -17,11 +15,17 @@ function computerSelection() {
 
 const playerSelected = document.querySelectorAll("button");
 playerSelected.forEach ((button) => {
-button.addEventListener("click", () => {
-  gameResult.textContent = playRound(playerSelection(button.id),computerSelection());
-  gameResults.appendChild(gameResult);
+    button.addEventListener("click", () => {
+        let computerSelected = computerSelection();
+        let currentGame = playRound(computerSelected, playerSelection(button.id));
+        addToDiv("results", currentGame + " " + playerSelection(button.id) + " vs " + computerSelected + " - " + totalResults[0] + " : " + totalResults[1] + "\n");
+        game();
+    });
 });
-});
+
+function addToDiv(name, data) {
+    document.getElementById(name).innerText += data;
+}
 
 function playerSelection(playerChoice) {
     return capitalize(playerChoice) + playerChoice.toLowerCase().slice(1);
@@ -29,44 +33,41 @@ function playerSelection(playerChoice) {
 
 function playRound(you, me) {
     if (you === me) {
-        return "Tie";
+        totalResults[2]++;
+        return "Game " + totalResults[2] + ": Tie! - ";
     }
     if (you === "Rock" && me === "Scissors") {
-        return "You lose!";
+        totalResults[1]++;
+        totalResults[2]++;
+        return "Game " + totalResults[2] + ": You lose! - ";
     }
     if (you === "Scissors" && me === "Paper") {
-        return "You lose!";
+        totalResults[1]++;
+        totalResults[2]++;
+        return "Game " + totalResults[2] + ": You lose! - ";
     }
     if (you === "Paper" && me === "Rock") {
-        return "You lose!";
+        totalResults[1]++;
+        totalResults[2]++;
+        return "Game " + totalResults[2] + ": You lose! - ";
     }
-    return "You win!";    
+    totalResults[0]++;
+    totalResults[2]++;
+    return "Game " + totalResults[2] + ": You win! - ";    
 }
 
-
-
+/* check the total score */
 function game() {
-    let computerScore = 0;
-    let playerScore = 0;
-    let gameTieCounter = 0;
-
-    for (let i = 0; i < 5; i++) {
-        let result = playRound(computerSelection(), playerSelection());
-        console.log("Game" + (i + 1 + gameTieCounter) + " outcome: " + result);
-        if (result === "You lose!") { computerScore = computerScore + 1; }
-        if (result === "You win!") { playerScore = playerScore + 1; }
-        if (result === "Tie") { i = i - 1; gameTieCounter = gameTieCounter + 1;}
-    }
-    
-    if (computerScore > playerScore) { 
-        console.log("You lost best of 5! Game score: " + computerScore + " : " + playerScore); 
-    }
-    if (computerScore < playerScore) { 
-        console.log("You won best of 5! Game score: " + playerScore + " : " + computerScore); 
-    }
-    if (computerScore == playerScore) {
-        console.log("The game is tied! Game score: " + playerScore + " : " + computerScore);
+    if (totalResults[0] == 3 || totalResults[1] == 3) {
+        if (totalResults[0] == 3) {
+            alert("Game Over! You Won " + totalResults[0] + " to " + totalResults[1]);
+            totalResults = [0,0,0];
+            document.getElementById("results").textContent = "";
+        }
+        if (totalResults[1] == 3) {
+            alert("Game Over! You Lost " + totalResults[0] + " to " + totalResults[1]);
+            totalResults = [0,0,0];
+            document.getElementById("results").textContent = "";
+        }
     }
 }
-
-game();
