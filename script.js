@@ -19,9 +19,13 @@ playerSelected.forEach ((button) => {
         let computerSelected = computerSelection();
         let currentGame = playRound(computerSelected, playerSelection(button.id));
         addToDiv("results", currentGame + " " + playerSelection(button.id) + " vs " + computerSelected + " - " + totalResults[0] + " : " + totalResults[1] + "\n");
-        game();
+        timeFunction();
     });
 });
+
+function timeFunction() {
+    setTimeout(game, 10);
+}
 
 function addToDiv(name, data) {
     document.getElementById(name).innerText += data;
